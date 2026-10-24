@@ -1,0 +1,22 @@
+:root {
+    --audio-progress-bar-slider-percent: 0%;
+    --audio-volume-slider-percent: 100%;
+}
+
+/* Audio progressbar slider*/
+.audio-progress-bar-slider::-webkit-slider-runnable-track  {
+    @apply h-1 rounded-2xl cursor-pointer transition-colors ease-in-out;
+    background: linear-gradient(to right, var(--color-zinc-800) var(--audio-progress-bar-slider-percent), white var(--audio-progress-bar-slider-percent));
+}
+.audio-progress-bar-slider::-webkit-slider-thumb  {
+    @apply appearance-none mt-[-0.4rem] size-4.5 rounded-full border-3 border-zinc-800 bg-white cursor-pointer;
+}
+
+/* Audio volume slider */
+.audio-volume-slider::-webkit-slider-runnable-track  {
+    @apply h-1 rounded-xs cursor-pointer transition-colors ease-in-out;
+    background: linear-gradient(to right, var(--color-zinc-800) var(--audio-volume-slider-percent), white var(--audio-volume-slider-percent));
+}
+.audio-volume-slider::-webkit-slider-thumb  {
+    @apply appearance-none mt-[-0.35rem] size-4 rounded-full border-3 border-zinc-800 bg-white cursor-pointer;
+}

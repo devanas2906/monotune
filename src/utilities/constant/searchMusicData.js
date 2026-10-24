@@ -1,0 +1,1 @@
+export const MUSIC_LIMIT_PER_SEARCH = 20;

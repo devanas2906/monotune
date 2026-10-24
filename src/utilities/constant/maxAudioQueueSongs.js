@@ -1,0 +1,1 @@
+export const MAX_AUDIO_QUEUE_SONGS = 10;
