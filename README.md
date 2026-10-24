@@ -1,132 +1,176 @@
 # Monotune
 
-Monotune is a web-based music discovery and listening experience built with React. Explore music by popularity, release date, listening trends, and genre; search for tracks and artists; and listen through a persistent audio player with queue management and playback controls.
+A modern web-based music player built with React, featuring music discovery, genre browsing, search, queue management, and a seamless music playback experience powered by the Jamendo API.
 
-## Features
+## ✨ Features
 
-- **Discover music** through curated sections for weekly popularity, recent releases, and weekly listens.
-- **Explore genres** including Pop, Rock, Jazz, Electronic, Ambient, and Lo-fi.
-- **Search tracks and artists** with debounced search and dedicated loading, empty, and error states.
-- **Listen with playback controls** for play/pause, seeking, volume, mute, previous/next track, shuffle, and repeat modes.
-- **Manage the listening queue** by adding tracks, removing individual tracks, clearing the queue, and shuffling playback order. The queue supports up to 10 tracks.
-- **Use the compact or fullscreen player** and open the queue panel while browsing.
-- **Download tracks when permitted** by the music provider.
-- **Persist player preferences and queue state** in browser storage using Zustand persist middleware.
-- **Responsive dark interface** with loading skeletons and toast notifications.
+* 🎵 Music discovery and browsing
+* 🔍 Search for music and tracks
+* 🎧 Music playback with player controls
+* 📚 Music browsing by genre and curated sections
+* 📋 Queue management with support for up to 10 tracks
+* 🖥️ Fullscreen music player
+* 💾 Persistent application state for a smoother listening experience
+* 🎨 Clean and responsive user interface
+* 🔔 Toast notifications for user feedback
+* ☁️ Jamendo API integration for music discovery and track data
 
-Music catalog and track metadata are provided by the [Jamendo API](https://developer.jamendo.com/v3.0).
+## 📸 Screenshots
 
-## Tech stack
+### Home & Music Discovery
 
-- [React 19](https://react.dev/) — UI
-- [Vite](https://vite.dev/) — development server and build tooling
-- [Tailwind CSS 4](https://tailwindcss.com/) — styling
-- [TanStack Query](https://tanstack.com/query/latest) — asynchronous music data fetching and caching
-- [Zustand](https://zustand.docs.pmnd.rs/) — player, queue, and persisted state
-- [Lucide React](https://lucide.dev/) — icons
-- [React Toastify](https://fkhadra.github.io/react-toastify/) — notifications
-- [Jamendo API](https://developer.jamendo.com/v3.0) — music catalog and streaming metadata
+![Home & Music Discovery](/docs/screenshots/home-page.jpg)
 
-## Getting started
+### Music Bottom Player
 
-### Prerequisites
+![Music Bottom Palyer](/docs/screenshots/audio-bottom-player.jpg)
 
-- [Node.js](https://nodejs.org/) with npm
-- A Jamendo API client ID
+### Music Fullscreen Player
 
-### 1. Clone the repository
+![Music Fullscreen Player](/docs/screenshots/audio-full-screen-player.jpg)
 
-```bash
-git clone https://github.com/devanas2906/audio-music-project.git
-cd audio-music-project
+### Music Search Results
+
+![Music Search Results](/docs/screenshots/audio-search-results.jpg)
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* Tailwind CSS
+* Lucide React
+
+### State Management & Data Fetching
+
+* Zustand
+* TanStack Query
+
+### API & Services
+
+* Jamendo API
+* React Toastify
+
+## 📁 Project Structure
+
+```text
+monotune/
+├── public/                 # Static assets
+├── src/                    # Application source code
+│   ├── components/         # Reusable UI components
+│   ├── services/           # API integration and services
+│   ├── stores/             # Application state management
+│   ├── constants/          # Music genres and section definitions
+│   ├── utils/              # Reusable utility functions
+│   └── ...                 # Application entry points and styles
+├── .env.example            # Environment variable template
+├── package.json            # Dependencies and scripts
+├── package-lock.json       # Dependency lockfile
+└── vite.config.js          # Vite configuration
 ```
 
-> If you rename the GitHub repository to `Monotune`, use the updated repository URL and folder name here.
+## 🚀 Getting Started
 
-### 2. Install dependencies
+### Requirements
+
+* Node.js
+* npm
+* A Jamendo API client ID
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/devanas2906/monotune.git
+cd monotune
+```
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-### 3. Configure environment variables
+### Environment Variables
 
-Create a local `.env` file from the example:
+Create a `.env` file in the project root based on `.env.example`:
 
-**macOS / Linux**
 ```bash
 cp .env.example .env
 ```
 
-**Windows PowerShell**
-```powershell
-Copy-Item .env.example .env
-```
+Configure the required environment variables:
 
-Set the values in `.env`:
-
-```dotenv
+```env
 VITE_JAMENDO_CLIENT_ID=your_jamendo_client_id
-VITE_APPLICATION_NAME=Monotune
+VITE_APPLICATION_NAME=your_application_name
 ```
 
-Get a client ID from the [Jamendo Developer Portal](https://developer.jamendo.com/). These variables are exposed to the browser by Vite, so do not put private server-side secrets in `VITE_*` variables.
+Replace `your_jamendo_client_id` with your Jamendo API client ID.
 
-### 4. Start the development server
+**Note:** Variables prefixed with `VITE_` are exposed to client-side code. Do not store private credentials or server-side secrets in these variables.
+
+### Development
+
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open the local URL printed by Vite in your terminal.
+Vite will provide a local URL in the terminal where you can access the application.
 
-## Available scripts
+### Production
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the local development server |
-| `npm run build` | Create a production build |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint |
+Build the application:
 
-## Project structure
-
-```text
-src/
-├── components/
-│   └── home/                 # Home page, music cards, search, queue, and players
-│       └── skeletons/        # Loading placeholders
-├── errors/                   # Music-related error types
-├── services/
-│   └── jamendo.js            # Jamendo API requests
-├── stores/
-│   ├── usePlayerStore.js     # Playback state and controls
-│   ├── usePlayerUIStore.js   # Fullscreen and queue-panel UI state
-│   └── useQueueStore.js      # Queue, shuffle, and track navigation
-├── styles/                   # Audio slider styling
-└── utilities/
-    ├── constant/             # Genres, sections, and result limits
-    ├── formats/               # API data and duration formatting
-    └── ...                    # Search debounce, notifications, shuffle, helpers
-public/
-└── favicon/                  # App icons and web manifest
+```bash
+npm run build
 ```
 
-## How it works
+Preview the production build locally:
 
-1. Monotune requests track data from Jamendo for the discovery sections or search query.
-2. TanStack Query handles request caching, loading states, and retries.
-3. Track metadata is normalized before it is displayed in music cards and search results.
-4. Zustand stores coordinate the audio element, playback controls, queue navigation, shuffle, and repeat behavior.
-5. The player and queue are persisted locally in the browser; no Monotune account is required by the current implementation.
+```bash
+npm run preview
+```
 
-## Notes
+### Linting
 
-- Search starts when the input contains at least three characters, with a short debounce to avoid sending a request for every keystroke.
-- Track downloads are only shown as available when the API marks them as permitted.
-- Music availability, streaming URLs, metadata, and download permissions depend on Jamendo and may vary by track.
-- The app requires an internet connection to retrieve catalog data and stream music.
+Run ESLint to check the code:
 
-## License
+```bash
+npm run lint
+```
 
-No license file is currently included in this repository. Add a `LICENSE` file if you intend to distribute the project under a specific open-source license.
+## 🔄 Main Workflow
+
+```text
+Open Monotune
+      ↓
+Browse Music Sections
+      ↓
+Explore Genres or Search Tracks
+      ↓
+Select a Track
+      ↓
+Start Music Playback
+      ↓
+Manage Playback and Queue
+      ↓
+Continue Discovering Music
+```
+
+## 🎯 Purpose
+
+Monotune is a personal portfolio project built to explore modern frontend development, component-based architecture, API integration, state management, asynchronous data fetching, and interactive media player experiences.
+
+The project demonstrates the implementation of a music discovery interface with playback controls, queue management, and a responsive user experience.
+
+## 👤 Author
+
+**Devanas**
+
+GitHub: [@devanas2906](https://github.com/devanas2906)
