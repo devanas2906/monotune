@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+
 import { usePlayerStore } from "../../stores/usePlayerStore";
 import { usePlayerUIStore } from "../../stores/usePlayerUIStore";
 import { useShallow } from 'zustand/react/shallow';
@@ -33,8 +34,8 @@ export const Home = () => {
     const isAudioLoop = audioRepeatMode === "repeat-one";
 
     useEffect(() => {
-        document.body.classList.toggle("overflow-hidden", (isShouldSearchMusic || isAudioFullScreen));
-    }, [isShouldSearchMusic, isAudioFullScreen]);
+        document.body.classList.toggle("overflow-hidden", (isShouldSearchMusic || isAudioQueuePanel || isAudioFullScreen));
+    }, [isShouldSearchMusic, isAudioQueuePanel, isAudioFullScreen]);
 
     return (
         <main className="min-h-screen bg-[#090909] px-5 py-6 text-white sm:px-8 lg:px-12" >

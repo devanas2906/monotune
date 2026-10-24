@@ -4,7 +4,9 @@ import { notifySuccess, notifyError } from '../utilities/notifications';
 import { unescapeString } from '../utilities/unscapeString';
 import { MAX_AUDIO_QUEUE_SONGS } from '../utilities/constant/maxAudioQueueSongs';
 import { shuffle } from '../utilities/shuffle';
+
 import { usePlayerStore } from './usePlayerStore';
+import { usePlayerUIStore } from './usePlayerUIStore';
 
 export const useQueueStore = create(
     persist(
@@ -114,10 +116,13 @@ export const useQueueStore = create(
                 notifySuccess(`Lagu "${removeQueueSongTitle}" dihapus dari antrean`);
             },
             clearAudioQueueSongs: () => {
+                const { isAudioFullScreen } = usePlayerUIStore.getState();
+
                 const { audioCurrentSongInQueue } = get();
                 const isAudioCurrentSongInQueue = audioCurrentSongInQueue();
 
                 if (isAudioCurrentSongInQueue) usePlayerStore.setState({ audioCurrentSong: null });
+                if (isAudioFullScreen && isAudioCurrentSongInQueue) usePlayerUIStore.setState({ isAudioFullScreen: false });
 
                 set({ audioQueueSongs: [], audioCurrentQueueSongIndex: -1 });
                 notifySuccess("Antrean lagu berhasil dikosongkan");
