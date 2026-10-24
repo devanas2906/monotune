@@ -22,7 +22,7 @@ export const MusicSection = ({ sectionData: { type, category, genre, title, desc
         <h2 className="text-xl font-medium sm:text-2xl">{title}</h2>
         <p className="mb-6 mt-2 text-sm text-zinc-500">{description}</p>
 
-        <div className="grid gap-5 grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {isPending && [...Array(MUSIC_LIMIT_PER_SECTION)].map((_, index) => <MusicCardSkeleton key={index} />)}
             {!isPending && songs.map(song => <MusicCard key={song.id} song={song} />)}
         </div>
