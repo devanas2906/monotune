@@ -57,18 +57,27 @@ A modern web-based music player built with React, featuring music discovery, gen
 
 ```text
 monotune/
-├── public/                 # Static assets
-├── src/                    # Application source code
-│   ├── components/         # Reusable UI components
-│   ├── services/           # API integration and services
-│   ├── stores/             # Application state management
-│   ├── constants/          # Music genres and section definitions
-│   ├── utils/              # Reusable utility functions
-│   └── ...                 # Application entry points and styles
-├── .env.example            # Environment variable template
-├── package.json            # Dependencies and scripts
-├── package-lock.json       # Dependency lockfile
-└── vite.config.js          # Vite configuration
+├── docs/
+│   └── screenshots/          # Application screenshots for documentation
+├── public/                   # Static assets
+├── src/
+│   ├── components/           # Reusable UI components
+│   ├── errors/               # Error handling and error-related modules
+│   ├── services/             # API integration and external services
+│   ├── stores/               # Application state management
+│   ├── styles/               # Application styling
+│   ├── utilities/            # Shared utility functions
+│   ├── App.jsx               # Main application component
+│   ├── index.css             # Global styles
+│   └── main.jsx              # Application entry point
+├── .env.example              # Environment variable template
+├── .gitignore                # Git ignore rules
+├── eslint.config.js           # ESLint configuration
+├── index.html                # HTML entry point
+├── package.json              # Dependencies and npm scripts
+├── package-lock.json         # Dependency lockfile
+├── README.md                 # Project documentation
+└── vite.config.js             # Vite configuration
 ```
 
 ## 🚀 Getting Started
