@@ -17,7 +17,7 @@ export const useQueueStore = create(
             audioCurrentSongInQueue: () => {
                 const audioCurrentSong = usePlayerStore.getState().audioCurrentSong;
                 const { audioQueueSongs } = get();
-                return Boolean(audioQueueSongs.find(queueSong => queueSong.id === audioCurrentSong.id));
+                return Boolean(audioQueueSongs.find(queueSong => queueSong.id === audioCurrentSong?.id));
             },
             setAudioQueueSongs: (song) => {
                 const setIsAudioCurrentSong = usePlayerStore.getState().setIsAudioCurrentSong;
