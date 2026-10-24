@@ -13,7 +13,7 @@ import { SearchMusicResultCard } from "./SearchMusicResultCard";
 
 import { MUSIC_LIMIT_PER_SEARCH } from "../../utilities/constant/searchMusicData";
 
-export const SearchMusicResultContainer = ({ searchMusicQuery }) => {
+export const SearchMusicResultContainer = ({ searchMusicQuery, setSearchMusicQuery }) => {
     const { audioElement, audioCurrentSong } = usePlayerStore(useShallow(state => ({ audioElement: state.audioElement, audioCurrentSong: state.audioCurrentSong })));
 
     const { isPending, isError, error, data: searchMusicResults, refetch } = useQuery({
@@ -30,8 +30,11 @@ export const SearchMusicResultContainer = ({ searchMusicQuery }) => {
     return (
         <div className="absolute top-[115%] left-0 right-0 rounded-2xl border border-white/10 bg-[#121212]/80 p-4 backdrop-blur-xl">
             <div className="border-b border-white/10 pb-3 mb-5">
-                <h2 className="text-[1.1rem] font-medium text-white mb-0.5">Hasil pencarian untuk <span className="text-zinc-300">"{searchMusicQuery}"</span></h2>
-                <p className="text-[0.85rem] text-zinc-400">{titleSearcMusicResult}</p>
+                <h2 className="text-[1.1rem] font-medium text-white mb-2 truncate">Hasil pencarian untuk <span className="text-zinc-300">"{searchMusicQuery}"</span></h2>
+                <div className="flex justify-between items-center">
+                    <p className="text-[0.85rem] text-zinc-400">{titleSearcMusicResult}</p>
+                    <button type="button" onClick={() => setSearchMusicQuery("")} className="grid place-content-center p-2 text-sm rounded-md bg-zinc-800 text-zinc-300 transition-all group-hover:bg-white group-hover:text-black cursor-pointer active:scale-95">Reset</button>
+                </div>
             </div>
             <div className={`flex flex-col gap-5 max-h-100 overflow-y-scroll scrollbar-none ${audioElement && audioCurrentSong ? "pb-16 sm:pb-19" : ""}`}>
                 {isPending && [...Array(MUSIC_LIMIT_PER_SEARCH)].map((_, index) => <SearchMusicResultCardSkeleton key={index} />)}

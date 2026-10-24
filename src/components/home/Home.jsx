@@ -40,7 +40,7 @@ export const Home = () => {
         <main className="min-h-screen bg-[#090909] px-5 py-6 text-white sm:px-8 lg:px-12" >
             <div className="mx-auto max-w-7xl">
                 <header className="fixed top-6 left-5 right-5 z-5 flex items-center gap-5 rounded-2xl border border-white/10 bg-[#121212]/80 p-4 before:content-[''] before:absolute before:inset-0 before:z-[-1] before:backdrop-blur-xl before:rounded-2xl">
-                    <a href="/" className="flex items-center gap-2 text-xl font-semibold tracking-[0.18em]"><AudioLines size={23} /> {APPLICATION_NAME}</a>
+                    <a href="/" className="flex items-center gap-2 text-xl font-semibold tracking-[0.18em]"><AudioLines size={23} /> <span className="hidden sm:block">{APPLICATION_NAME}</span></a>
 
                     <div className="w-full flex items-center gap-3 rounded-xl border border-white/10 bg-black/10 px-3 py-2.5">
                         <Search size={17} className="text-zinc-500" />
@@ -61,7 +61,7 @@ export const Home = () => {
                     >
                         <ListMusic size={14} />
                     </button>
-                    {isShouldSearchMusic && <SearchMusicResultContainer searchMusicQuery={searchMusicQuery} />}
+                    {isShouldSearchMusic && <SearchMusicResultContainer searchMusicQuery={searchMusicQuery} setSearchMusicQuery={setSearchMusicQuery} />}
                 </header>
 
                 <section className="mt-23 mb-12">
