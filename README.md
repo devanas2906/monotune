@@ -2,6 +2,12 @@
 
 A modern web-based music player built with React, featuring music discovery, genre browsing, search, queue management, and a seamless music playback experience powered by the Jamendo API.
 
+## 🌐 Live Demo
+
+Try Monotune here: https://monotune.pages.dev/
+
+Explore the application directly in your browser without installing anything.
+
 ## ✨ Features
 
 * 🎵 Music discovery and browsing
