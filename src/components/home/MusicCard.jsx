@@ -15,7 +15,7 @@ export const MusicCard = ({ song }) => {
 
     return (
         <div className="group rounded-2xl border border-white/10 bg-white/4 p-3 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/6">
-            <div className="h-40 sm:h-48 w-full rounded-xl overflow-hidden">
+            <div className="h-48 w-full rounded-xl overflow-hidden">
                 <img
                     src={image}
                     alt={`Cover ${name}`}

@@ -36,13 +36,13 @@ export const MusicSection = ({ sectionData: { type, category, genre, title, desc
     if (isError) return <MusicError onRetry={refetch} />;
 
     return <section className={`${hasSelected ? "mb-5" : "mb-15"}`}>
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start gap-3">
             <div>
                 <h2 className="text-xl font-medium sm:text-2xl">{title}</h2>
                 <p className="mb-6 mt-2 text-sm text-zinc-500">{description}</p>
             </div>
 
-            {type === "category" && (<span className="text-sm text-zinc-500 cursor-pointer" onClick={() => changeCategory(selectedCategory ? "" : category)}>{selectedCategory ? "Reset" : "Lihat Semua"}</span>)}
+            {type === "category" && (<span className="text-sm text-zinc-500 truncate cursor-pointer" onClick={() => changeCategory(selectedCategory ? "" : category)}>{selectedCategory ? "Reset" : "Lihat Semua"}</span>)}
         </div>
 
         <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
