@@ -1,6 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { usePlayerStore } from "../../stores/usePlayerStore";
-import { useShallow } from 'zustand/react/shallow';
 
 import { MusicEmptyResultError } from "../../errors/musicEmptyResultError";
 import { getMusicBySearch } from "../../services/jamendo";
@@ -14,8 +12,6 @@ import { SearchMusicResultCard } from "./SearchMusicResultCard";
 import { MUSIC_LIMIT_PER_SEARCH } from "../../utilities/constant/searchMusicData";
 
 export const SearchMusicResultContainer = ({ searchMusicQuery, setSearchMusicQuery }) => {
-    const { audioElement, audioCurrentSong } = usePlayerStore(useShallow(state => ({ audioElement: state.audioElement, audioCurrentSong: state.audioCurrentSong })));
-
     const { isPending, isError, error, data: searchMusicResults, refetch } = useQuery({
         queryKey: [`search-music-${searchMusicQuery}`],
         queryFn: () => getMusicBySearch(searchMusicQuery, MUSIC_LIMIT_PER_SEARCH),
@@ -36,7 +32,7 @@ export const SearchMusicResultContainer = ({ searchMusicQuery, setSearchMusicQue
                     <button type="button" onClick={() => setSearchMusicQuery("")} className="grid place-content-center p-2 text-sm rounded-md bg-zinc-800 text-zinc-300 transition-all group-hover:bg-white group-hover:text-black cursor-pointer active:scale-95">Reset</button>
                 </div>
             </div>
-            <div className={`flex flex-col gap-5 max-h-100 overflow-y-scroll scrollbar-none ${audioElement && audioCurrentSong ? "pb-16 sm:pb-19" : ""}`}>
+            <div className={`flex flex-col gap-5 max-h-[calc(100vh-340px)] overflow-y-scroll scrollbar-none`}>
                 {isPending && [...Array(MUSIC_LIMIT_PER_SEARCH)].map((_, index) => <SearchMusicResultCardSkeleton key={index} />)}
                 {isError && isEmptyResult && <SearchEmptyMusicResult query={searchMusicQuery} />}
                 {isError && !isEmptyResult && <SearchMusicResultError onRetry={refetch} />}
