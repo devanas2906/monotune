@@ -22,7 +22,9 @@ export const Home = () => {
     const { audioElement, audioCurrentSong, audioRepeatMode, setAudioElement, setAudioMaxTime, setIsAudioPlaying, handleAudioUpdateTime, handleAudioEnded } = usePlayerStore(useShallow(state => ({ audioElement: state.audioElement, audioCurrentSong: state.audioCurrentSong, audioRepeatMode: state.audioRepeatMode, setAudioElement: state.setAudioElement, setAudioMaxTime: state.setAudioMaxTime, setIsAudioPlaying: state.setIsAudioPlaying, handleAudioUpdateTime: state.handleAudioUpdateTime, handleAudioEnded: state.handleAudioEnded })));
     const { isAudioQueuePanel, isAudioFullScreen } = usePlayerUIStore(useShallow(state => ({ isAudioQueuePanel: state.isAudioQueuePanel, isAudioFullScreen: state.isAudioFullScreen, setIsAudioQueuePanel: state.setIsAudioQueuePanel })));
 
+    const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
+
     const isAudioLoop = audioRepeatMode === "repeat-one";
 
     return (
@@ -45,12 +47,14 @@ export const Home = () => {
                     musicSectionData
                         .filter(sectionData => {
                             const currentType = sectionData.type;
+                            const currentCategory = sectionData.category;
                             const currentGenre = sectionData.genre;
 
+                            if (selectedCategory === currentCategory && !selectedGenre && currentType === "category") return true;
                             if (selectedGenre === currentGenre && currentType === "genre") return true;
-                            if (!selectedGenre && currentType === "category") return true;
+                            if (!selectedCategory && !selectedGenre && currentType === "category") return true;
                         })
-                        .map(sectionData => <MusicSection key={sectionData.title} sectionData={sectionData} selectedGenre={selectedGenre} />)
+                        .map(sectionData => <MusicSection key={sectionData.title} sectionData={sectionData} selectedCategory={selectedCategory} selectedGenre={selectedGenre} changeCategory={setSelectedCategory} />)
                 }</section>
 
                 {audioElement && audioCurrentSong && <AudioPlayer />}
@@ -71,7 +75,7 @@ export const Home = () => {
                     />
                 }
 
-                <footer className={`mt-20 pt-6 ${audioElement && audioCurrentSong ? "pb-22" : "pb-3"} border-t border-white/10 text-center text-xs text-zinc-600`}>© 2026 {APPLICATION_NAME} Music. Made for music lovers.</footer>
+                <footer className={`pt-6 ${audioElement && audioCurrentSong ? "pb-22" : "pb-3"} border-t border-white/10 text-center text-xs text-zinc-600`}>© 2026 {APPLICATION_NAME} Music. Made for music lovers.</footer>
             </div>
         </main >
     );
