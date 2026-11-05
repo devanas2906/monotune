@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { MusicCard } from "./MusicCard";
 import { MusicCardSkeleton } from "./skeletons/MusicCardSkeleton";
@@ -62,25 +61,23 @@ export const MusicSection = ({ sectionData: { type, category, genre, title, desc
                             title="Lagu Sebelumnya"
                             disabled={isPending}
                             type="button"
-                            className={`flex items-center px-3 py-2 rounded-lg bg-[#27272a] text-white ${isPending ? "cursor-not-allowed" : "cursor-pointer"} hover:bg-zinc-700 transition-colors`}
+                            className={`flex items-center p-3 rounded-lg bg-[#27272a] text-white ${isPending ? "cursor-not-allowed" : "cursor-pointer"} hover:bg-zinc-700 transition-colors`}
                             onClick={() => paginateMusicSection("previous")}
                         >
-                            <ChevronLeft size={17} />
-                            <span className="mb-0.5">Sebelumnya</span>
+                            Sebelumnya
                         </button>
 
-                        <span className="tracking-wide text-zinc-400">Menampilkan lagu halaman <span className="text-zinc-200 font-medium">{currentPage}</span></span>
+                        <span className="tracking-wide text-zinc-400">Halaman <span className="text-zinc-200 font-medium">{currentPage}</span></span>
 
                         <button
                             aria-label="Lagu Selanjutnya"
                             title="Lagu Selanjutnya"
                             disabled={isPending}
                             type="button"
-                            className={`flex items-center px-3 py-1.5 rounded-lg bg-[#27272a] text-white ${isPending ? "cursor-not-allowed" : "cursor-pointer"} hover:bg-zinc-700 transition-colors`}
+                            className={`flex items-center p-3 rounded-lg bg-[#27272a] text-white ${isPending ? "cursor-not-allowed" : "cursor-pointer"} hover:bg-zinc-700 transition-colors`}
                             onClick={() => paginateMusicSection("next")}
                         >
-                            <span className="mb-0.75">Selanjutnya</span>
-                            <ChevronRight size={17} />
+                            Selanjutnya
                         </button>
                     </div>
                 </div>
